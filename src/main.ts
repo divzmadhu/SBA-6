@@ -26,3 +26,25 @@ Original Price: $ 100
 Discount Percentage: 10 %       
 Discounted Price: $ 90   
 */       
+
+import {calculateDiscount} from "./utils/discountCalculator.js";
+
+console.log("\nTest 2")
+
+console.log(`Discounted Price is ${calculateDiscount(100, 10)}`);
+console.log(`Discounted Price is ${calculateDiscount(200, 0)}`);
+console.log(`Discounted Price is ${calculateDiscount(300, 15)}`);
+console.log(`Discounted Price is ${calculateDiscount(400, 20)}`);
+
+/*
+========================================== 
+Test Output for Discount Calculator (discountCalculator.ts)
+========================================== 
+Running command: node dist/main.js 
+Expected console output verifying discount calculations:
+Test 2
+Discounted Price is 10
+Discounted Price is 0
+Discounted Price is 45
+Discounted Price is 80
+*/
