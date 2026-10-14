@@ -8,6 +8,9 @@
 //         Include methods displayDetails() and getPriceWithDiscount(), and implement them appropriately based on the provided data.
 
 
+import  {calculateDiscount} from "../utils/discountCalculator.js";
+
+
 export class Product {
     id: number;
     title: string;
@@ -43,10 +46,31 @@ export class Product {
         console.log("Discount Percentage:", this.discountPercentage, "%");
         console.log("Discounted Price: $", this.getPriceWithDiscount());
     }
+
+    // Initial function definition before importing the calculate discount function
+    /*
     getPriceWithDiscount(): number {
+
         const discountAmount = this.price * this.discountPercentage / 100;
         const discountedPrice = this.price - discountAmount;
+        console.log("\nTest 1");
         return discountedPrice;
+        
     }
+    */
+     
+    // Modified function definition after importing the calculate discount function   ---- Part 3.2.1 Implementation / Implement Utilities / Discount Calculator Module 
+    getPriceWithDiscount():number
+    {
+        const discountAmount = calculateDiscount(this.price, this.discountPercentage);
+        const discountedPrice = this.price - discountAmount;
+        console.log("\nTest 3");
+        return discountedPrice;
+       
+
+    }
+
+    
+
 
 }
