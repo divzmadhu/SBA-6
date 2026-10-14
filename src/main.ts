@@ -172,23 +172,30 @@ testApi();    //test 8 display the data of the first product
 */
 
 async function testApi() {
-    const data = await fetchProducts();
+    try {
 
-    for (let i = 0; i < data.products.length; i++) {
-        const apiProduct = data.products[i];
+        const data = await fetchProducts();
 
-        const newProduct = new Product(
-            apiProduct.id,
-            apiProduct.title,
-            apiProduct.description,
-            apiProduct.category,
-            apiProduct.price,
-            apiProduct.discountPercentage
-        );
+        for (let i = 0; i < data.products.length; i++) {
+            const apiProduct = data.products[i];
 
-        newProduct.displayDetails();
-        console.log("-------------------------");
+            const newProduct = new Product(
+                apiProduct.id,
+                apiProduct.title,
+                apiProduct.description,
+                apiProduct.category,
+                apiProduct.price,
+                apiProduct.discountPercentage
+            );
+
+            newProduct.displayDetails();
+            console.log("-------------------------");
+        }
+    }
+    catch (error) {
+        console.log("Unable to display products:", error);
     }
 }
 
-testApi(); // Test 9: Display multiple products
+
+testApi(); // Added try catch here

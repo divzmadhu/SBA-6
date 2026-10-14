@@ -1,7 +1,7 @@
 // Starting with API
 
 const API_URL = "https://dummyjson.com/products";
-
+//const API_URL = "https://dummyjson.com/invalid-endpoint";   //Testing for negative test case for catching errors
 
 export async function fetchProducts() {
     try {
@@ -18,3 +18,4 @@ export async function fetchProducts() {
         throw error;
     }
 }
+
