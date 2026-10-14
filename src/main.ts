@@ -1,6 +1,6 @@
 import { Product } from "./models/Product.js";
 
-import {calculateTax} from "./utils/taxCalculator.js"
+import { calculateTax } from "./utils/taxCalculator.js"
 
 import { fetchProducts } from "./services/apiService.js";      //API 
 
@@ -31,7 +31,7 @@ Discount Percentage: 10 %
 
 Test 1
 Discounted Price: $ 90   
-*/    
+*/
 
 // ==========================================
 // Test 3 Output for Product Class (Product.ts)       // After importing the calculate discount function
@@ -51,7 +51,7 @@ Discounted Price: $ 90
 
 */
 
-import {calculateDiscount} from "./utils/discountCalculator.js";
+import { calculateDiscount } from "./utils/discountCalculator.js";
 
 console.log("\nTest 2");
 
@@ -76,9 +76,9 @@ Discounted Price is 80
 console.log("\nTest 4");
 console.log("Tax Calculator Tests");
 
-console.log(calculateTax(150,"groceries"));
-console.log(calculateTax(100,"electronics"));
-console.log(calculateTax(150,"beauty"));
+console.log(calculateTax(150, "groceries"));
+console.log(calculateTax(100, "electronics"));
+console.log(calculateTax(150, "beauty"));
 
 /*
 ========================================== 
@@ -100,7 +100,7 @@ Tax Calculator Tests
 
 console.log("\nTest 5");
 console.log("Product Tax : ");
-const taxAmount  = calculateTax(product.price, product.category);
+const taxAmount = calculateTax(product.price, product.category);
 console.log(`Tax Amount :  ${taxAmount}`);
 
 /*
@@ -132,7 +132,7 @@ Tax Amount : $4.275
 Final Price Including Tax: $94.275
 */
 
-
+/*   
 async function testApi() {
     const data = await fetchProducts();
 
@@ -140,4 +140,55 @@ async function testApi() {
     console.log(data.products[0]);
 }
 
-testApi();
+testApi();    // Test 7 display the data fetched
+
+*/
+
+/*
+async function testApi() {
+    const data = await fetchProducts();
+
+    const apiProduct = data.products[0];
+
+    console.log(apiProduct.title);
+    console.log(apiProduct.price);
+
+    const newProduct = new Product(
+    apiProduct.id,
+    apiProduct.title,
+    apiProduct.description,
+    apiProduct.category,
+    apiProduct.price,
+    apiProduct.discountPercentage
+);
+
+newProduct.displayDetails();
+
+}
+
+testApi();    //test 8 display the data of the first product
+
+
+*/
+
+async function testApi() {
+    const data = await fetchProducts();
+
+    for (let i = 0; i < data.products.length; i++) {
+        const apiProduct = data.products[i];
+
+        const newProduct = new Product(
+            apiProduct.id,
+            apiProduct.title,
+            apiProduct.description,
+            apiProduct.category,
+            apiProduct.price,
+            apiProduct.discountPercentage
+        );
+
+        newProduct.displayDetails();
+        console.log("-------------------------");
+    }
+}
+
+testApi(); // Test 9: Display multiple products
