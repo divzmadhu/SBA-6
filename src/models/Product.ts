@@ -8,7 +8,9 @@
 //         Include methods displayDetails() and getPriceWithDiscount(), and implement them appropriately based on the provided data.
 
 
-import  {calculateDiscount} from "../utils/discountCalculator.js";
+import { calculateDiscount } from "../utils/discountCalculator.js";
+
+import { calculateTax } from "../utils/taxCalculator.js"
 
 
 export class Product {
@@ -27,8 +29,7 @@ export class Product {
         price: number,
         discountPercentage: number,
 
-    ) 
-    {
+    ) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -45,6 +46,13 @@ export class Product {
         console.log("Original Price: $", this.price);
         console.log("Discount Percentage:", this.discountPercentage, "%");
         console.log("Discounted Price: $", this.getPriceWithDiscount());
+
+        // Adding these statements to include tax and Final Price // After importing calculateTax
+        console.log("\nTest 6");
+        console.log(`Tax Amount : $${this.getTaxAmount()}`);
+        console.log(`Final Price Including Tax: $${this.getPriceWithTax()}`);
+
+
     }
 
     // Initial function definition before importing the calculate discount function
@@ -58,19 +66,28 @@ export class Product {
         
     }
     */
-     
+
     // Modified function definition after importing the calculate discount function   ---- Part 3.2.1 Implementation / Implement Utilities / Discount Calculator Module 
-    getPriceWithDiscount():number
-    {
+    getPriceWithDiscount(): number {
         const discountAmount = calculateDiscount(this.price, this.discountPercentage);
         const discountedPrice = this.price - discountAmount;
-        console.log("\nTest 3");
+        //console.log("\nTest 3");
         return discountedPrice;
-       
+
 
     }
 
-    
+    getPriceWithTax(): number {
+        const discountedPrice = this.getPriceWithDiscount();
+        const taxAmount = calculateTax(discountedPrice, this.category);
+        const finalPrice = discountedPrice + taxAmount;
 
+        return finalPrice;
+    }
+
+    getTaxAmount(): number {
+        const discountedPrice = this.getPriceWithDiscount();
+        return calculateTax(discountedPrice, this.category);
+    }
 
 }
