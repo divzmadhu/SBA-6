@@ -2,6 +2,8 @@ import { Product } from "./models/Product.js";
 
 import {calculateTax} from "./utils/taxCalculator.js"
 
+import { fetchProducts } from "./services/apiService.js";      //API 
+
 const product = new Product(
     1,
     "Essence Mascara",
@@ -129,3 +131,13 @@ Test 6
 Tax Amount : $4.275
 Final Price Including Tax: $94.275
 */
+
+
+async function testApi() {
+    const data = await fetchProducts();
+
+    console.log("\nTest 7: API Data");
+    console.log(data.products[0]);
+}
+
+testApi();
